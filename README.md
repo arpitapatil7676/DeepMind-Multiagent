@@ -1,183 +1,167 @@
 # DeepMind – Multi-Agent AI Research System
 
-> An advanced AI-powered research assistant built with Streamlit, LangChain, and multiple specialized AI agents that collaborate to generate high-quality research reports automatically.
+> An AI-powered research assistant built with Streamlit, LangChain, Tavily Search, and Ollama that automatically generates structured research reports and critiques them using multiple AI stages.
 
 ---
 
 # 🚀 Project Overview
 
-DeepMind is a multi-agent AI research pipeline where different AI agents work together like a real research team.
+DeepMind is a multi-stage AI research pipeline designed to automate the process of gathering information, generating reports, and evaluating report quality.
 
 The system:
 
-1. Searches the web for relevant information
-2. Scrapes detailed content from sources
-3. Writes a structured research report
-4. Critiques and improves the final output
+1. Searches the web for relevant information using Tavily Search
+2. Collects and processes research content
+3. Generates a structured research report using a local LLM
+4. Reviews and critiques the generated report
 
-The application features a modern futuristic UI, smooth animations, and an elegant workflow visualization.
+The application features an interactive Streamlit interface with real-time workflow visualization.
 
 ---
 
-# 🧠 AI Agents Used
+# 🧠 System Workflow
 
-## 🔍 Search Agent
-Finds:
-- Recent information
-- Reliable sources
-- Research-worthy articles
+## 🔍 Search Stage
 
-## 📄 Reader Agent
 Responsible for:
-- Scraping websites
-- Extracting deep content
-- Cleaning raw data
 
-## ✍️ Writer Agent
+* Finding relevant information from the web
+* Retrieving recent and reliable sources
+* Gathering research data
+
+---
+
+## 📄 Reader Stage
+
+Responsible for:
+
+* Processing search results
+* Organizing collected information
+* Preparing content for report generation
+
+---
+
+## ✍️ Writer Stage
+
+Powered by:
+
+* Ollama
+* Qwen2.5 Local LLM
+
 Generates:
-- Structured research reports
-- Summaries
-- Insights
-- Explanations
 
-## 🧐 Critic Agent
+* Research reports
+* Summaries
+* Insights
+* Structured findings
+
+---
+
+## 🧐 Critic Stage
+
 Reviews:
-- Quality of report
-- Missing information
-- Clarity
-- Research depth
+
+* Report quality
+* Clarity
+* Completeness
+* Research depth
+
+Provides:
+
+* Score
+* Strengths
+* Areas for improvement
 
 ---
 
 # ⚡ Features
 
-- Multi-Agent AI Workflow
-- Beautiful Streamlit UI
-- Real-Time Pipeline Visualization
-- Automated Research Generation
-- AI-Based Report Critique
-- Markdown Report Download
-- Responsive Dark Theme
-- Modern Animations & Effects
+* Multi-Stage AI Research Pipeline
+* Local LLM Execution using Ollama
+* Tavily Web Search Integration
+* Automated Report Generation
+* AI-Based Report Critique
+* Download Research Reports
+* Interactive Streamlit Dashboard
+* Modern Dark-Themed UI
 
 ---
 
 # 🛠️ Tech Stack
 
 ## Frontend
-- Streamlit
-- Custom CSS
-- Google Fonts
+
+* Streamlit
+* Custom CSS
+* Google Fonts
 
 ## Backend
-- Python
-- LangChain
-- Tavily Search API
-- Web Scraping Agents
+
+* Python
+* LangChain
+* Tavily Search API
+* Requests
+* BeautifulSoup
 
 ## AI Components
-- Multi-Agent Architecture
-- LLM Chains
-- Research Pipeline
+
+* Ollama
+* Qwen2.5:1.5B
+* Prompt Engineering
+* Writer Chain
+* Critic Chain
 
 ---
 
-# 📂 Project Structure
+📂 Project Structure
 
 ```bash
 DeepMind/
 │
 ├── app.py
 ├── agents.py
+├── tools.py
+├── pipeline.py
 ├── requirements.txt
 ├── README.md
-│
-├── assets/
-│   ├── ui/
-│   ├── demo/
-│   └── videos/
-│
-└── reports/
-```
-
----
-
-# 🎨 UI Preview
-
-## 🖥️ Main Dashboard
-
-Add your UI screenshot here:
-
-```md
-![UI Preview](assets/ui/main_dashboard.png)
-```
-
----
-
-## 🔄 Pipeline Workflow
-
-```md
-![Pipeline](assets/ui/pipeline.png)
-```
-
----
-
-## 📝 Final Research Report
-
-```md
-![Report](assets/ui/report.png)
-```
-
----
-
-# 🎥 Demo Video
-
-Add your project demo video:
-
-```md
-[▶ Watch Demo Video](assets/videos/demo.mp4)
-```
-
-Or YouTube:
-
-```md
-[▶ Watch on YouTube](https://youtube.com/your-video-link)
+└── .env
 ```
 
 ---
 
 # ⚙️ Installation
 
-## 1️⃣ Clone Repository
+## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/deepmind-ai-research-agent.git
-cd deepmind-ai-research-agent
+git clone https://github.com/arpitapatil7676/Deepmind-multiagent.git
+
+cd Deepmind-multiagent
 ```
 
 ---
 
-## 2️⃣ Create Virtual Environment
+## Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate:
-
 ### Windows
+
 ```bash
 venv\Scripts\activate
 ```
 
 ### Linux/Mac
+
 ```bash
 source venv/bin/activate
 ```
 
 ---
 
-## 3️⃣ Install Dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -185,18 +169,39 @@ pip install -r requirements.txt
 
 ---
 
-## 4️⃣ Add API Keys
+## Install Ollama
 
-Create `.env`
+Download:
 
-```env
-TAVILY_API_KEY=your_api_key
-OPENAI_API_KEY=your_api_key
+https://ollama.com
+
+Pull the model:
+
+```bash
+ollama pull qwen2.5:1.5b
 ```
 
 ---
 
-## 5️⃣ Run Project
+## Configure Environment Variables
+
+Create a `.env` file:
+
+```env
+TAVILY_API_KEY=your_tavily_api_key
+```
+
+---
+
+## Run the Application
+
+Start Ollama:
+
+```bash
+ollama serve
+```
+
+Run Streamlit:
 
 ```bash
 streamlit run app.py
@@ -204,65 +209,35 @@ streamlit run app.py
 
 ---
 
-# 🧪 Example Research Topics
+# 🧪 Example Topics
 
-- AI Agents in 2026
-- Quantum Computing
-- Fusion Energy
-- CRISPR Technology
-- Future of AGI
-- SpaceX Mars Mission
+* Artificial Intelligence
+* Quantum Computing
+* Climate Change
+* Fusion Energy
+* Cyber Security
+* Space Exploration
+* Machine Learning
+* CRISPR Technology
 
 ---
 
 # 📈 Future Improvements
 
-- PDF Export
-- Multi-source verification
-- Voice-based research assistant
-- Autonomous AI browsing
-- Memory-enabled agents
-- Real-time citations
-- Graph generation
+* PDF Export
+* Citation Support
+* Multi-Source Verification
+* RAG Integration
+* Research History Storage
+* Voice-Based Interaction
+* Agent Memory
+* Knowledge Graph Generation
 
 ---
 
-# 🤝 Contributing
+# 👩‍💻 Author
 
-Pull requests are welcome.
+Arpita Patil
 
-For major changes:
-1. Fork the repo
-2. Create a feature branch
-3. Commit changes
-4. Open PR
-
----
-
-# 📜 License
-
-MIT License
-
----
-
-# 👨‍💻 Author
-
-Divya Singh
-
----
-
-# ⭐ Support
-
-If you like this project:
-- Star the repository
-- Share with others
-- Contribute improvements
-
----
-
-# 🔗 GitHub Repository
-
-```md
-https://github.com/yourusername/deepmind-ai-research-agent
-```
-
+GitHub:
+https://github.com/arpitapatil7676
